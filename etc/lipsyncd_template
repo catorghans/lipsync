@@ -2,7 +2,8 @@
 # Copyright (c) 2011 Phil Cryer phil.cryer@gmail.com
 # Source https://github.com/philcryer/lipsync
  
-USER_NAME=LSUSER
+USER_NAME_CLIENT=LSUSERCLIENT
+USER_NAME_SERVER=LSUSERSERVER
 LOCAL_DIR=LSLOCDIR
 REMOTE_HOST=LSREMSERV
 REMOTE_DIR=LSREMDIR

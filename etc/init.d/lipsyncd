@@ -29,10 +29,10 @@ if [ -e $CONF_FILE ]; then
         . $CONF_FILE
 fi
 
-LOGFILE=/home/$USER_NAME/.$NAME/$NAME.log
-PIDFILE=/home/$USER_NAME/.$NAME/$NAME.pid
+LOGFILE=/home/$USER_NAME_CLIENT/.$NAME/$NAME.log
+PIDFILE=/home/$USER_NAME_CLIENT/.$NAME/$NAME.pid
 RUN=yes
-RUN_AS_USER=$USER_NAME
+RUN_AS_USER=$USER_NAME_CLIENT
 
 # Include lipsyncd defaults if available
 if [ -f /etc/default/lipsyncd ] ; then
@@ -40,11 +40,11 @@ if [ -f /etc/default/lipsyncd ] ; then
 fi
 
 # ensure user's log/pid dir is avail, create if not
- if [ ! -d /home/$USER_NAME/.$NAME ]; then
-                mkdir /home/$USER_NAME/.$NAME
+ if [ ! -d /home/$USER_NAME_CLIENT/.$NAME ]; then
+                mkdir /home/$USER_NAME_CLIENT/.$NAME
         fi
 # verify sane perms on log/pid dir
-chown $USER_NAME:$USER_NAME /home/$USER_NAME/.$NAME
+chown $USER_NAME_CLIENT:$USER_NAME_CLIENT /home/$USER_NAME_CLIENT/.$NAME
 
 if [ "x$RUN" != "xyes" ] ; then
     exit 0
@@ -57,7 +57,7 @@ set -e
 case "$1" in
   start)
 	echo -n "Starting $NAME daemon..."
-	su $RUN_AS_USER -c "$DAEMON -log $LOGLEVEL -delay $DELAY_SEC -logfile $LOGFILE -pidfile $PIDFILE -rsyncssh $LOCAL_DIR $REMOTE_HOST $REMOTE_DIR"
+	su $RUN_AS_USER -c "$DAEMON -log $LOGLEVEL -delay $DELAY_SEC -logfile $LOGFILE -pidfile $PIDFILE -rsyncssh $LOCAL_DIR $USER_NAME_SERVER@$REMOTE_HOST $REMOTE_DIR"
 	echo "done"
 	#echo `ps -fe | grep "/usr/local/bin/lipsyncd" | grep -v grep | cut -d' ' -f7` > $PIDFILE
 	echo `pidof lipsyncd` > $PIDFILE
