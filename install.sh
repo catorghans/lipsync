@@ -224,9 +224,8 @@ if [ "${1}" = "uninstall" ]; then
 	read continue
 	uninstall
 	exit 0
-else if [ "${1}" = "restart" ]; then
+elif [ "${1}" = "restart" ]; then
 	initial_sync
-	fi
 else
 	questions
 	ssh.keygen
