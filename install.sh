@@ -200,12 +200,14 @@ initial_sync(){
 	echo -n "* Doing inital sync with server..."
 	. /etc/lipsyncd
 	su $USER_NAME_CLIENT -c 'rsync -rav --stats --log-file=/home/'$USER_NAME_CLIENT'/.lipsyncd/lipsyncd.log -e "ssh -l '$USER_NAME_SERVER' -p '$SSH_PORT'" '$REMOTE_HOST':'$REMOTE_DIR' '$LOCAL_DIR''
-	echo "Initial sync `date` Completed" > /home/$username_client/.lipsyncd/lipsyncd.log
+	echo "Initial sync `date` Completed" > /home/$USER_NAME_CLIENT/.lipsyncd/lipsyncd.log
 }
 
 start(){
 	/etc/init.d/lipsyncd start; sleep 2
-	if [ -f /home/$username_client/.lipsyncd/lipsyncd.pid ]; then
+        . /etc/lipsyncd
+
+	if [ -f /home/$USER_NAME_CLIENT/.lipsyncd/lipsyncd.pid ]; then
 #		echo "	NOTICE: lipsyncd is running as pid `cat /home/$username_client/.lipsyncd/lipsyncd.pid`"
 		echo "	NOTICE: lipsyncd is running as pid `pidof lipsyncd`"
 		echo "	Check lipsyncd.log for details"
