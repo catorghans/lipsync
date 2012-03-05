@@ -197,10 +197,6 @@ deploy(){
 }
 
 initial_sync(){
-	echo -n "* Doing inital sync with server..."
-	. /etc/lipsyncd
-	su $USER_NAME_CLIENT -c 'rsync -rav --stats --log-file=/home/'$USER_NAME_CLIENT'/.lipsyncd/lipsyncd.log -e "ssh -l '$USER_NAME_SERVER' -p '$SSH_PORT'" '$REMOTE_HOST':'$REMOTE_DIR' '$LOCAL_DIR''
-	echo "Initial sync `date` Completed" > /home/$USER_NAME_CLIENT/.lipsyncd/lipsyncd.log
 }
 
 start(){
