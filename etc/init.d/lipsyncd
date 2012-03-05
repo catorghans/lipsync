@@ -56,6 +56,10 @@ set -e
 
 case "$1" in
   start)
+        echo -n "* Doing inital sync with server..."
+        su $USER_NAME_CLIENT -c 'rsync -rav --stats --log-file=/home/'$USER_NAME_CLIENT'/.lipsyncd/lipsyncd.log -e "ssh -l '$USER_NAME_SERVER' -p '$SSH_PORT'" '$REMOTE_HOST':'$$
+        echo "Initial sync `date` Completed" >> $LOGFILE
+	
 	echo -n "Starting $NAME daemon..."
 	su $RUN_AS_USER -c "$DAEMON -log $LOGLEVEL -delay $DELAY_SEC -logfile $LOGFILE -pidfile $PIDFILE -rsyncssh $LOCAL_DIR $USER_NAME_SERVER@$REMOTE_HOST $REMOTE_DIR"
 	echo "done"
