@@ -45,12 +45,13 @@ Redistributions of source code must retain the above copyright notice, this list
 
 == Authors / Contact
 phil (at) cryer (dot) us
+hans (at) orgis (dot) nl
 
 == Download
-You can download this project in either {zip}[http://github.com/philcryer/lipsync/zipball/master] or {tar}[http://github.com/philcryer/lipsync/tarball/master] formats.
+You can download this project in either {zip}[http://github.com/catorghans/lipsync/zipball/master] or {tar}[http://github.com/catorghans/lipsync/tarball/master] formats.
 
 Or simply clone the project with {Git}[http://git-scm.com/] by running:
 
-	git clone git://github.com/philcryer/lipsync
+	git clone git://github.com/catorghans/lipsync
 
 Thanks
